@@ -1,0 +1,16 @@
+//
+//  CommonError.swift
+//  
+//
+//  Created by Imthathullah on 31/01/23.
+//
+
+import Foundation
+
+public struct CommonError: Error {
+  let message: String
+
+  public init(_ message: String) {
+    self.message = message
+  }
+}
