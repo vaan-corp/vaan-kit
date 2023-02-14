@@ -51,3 +51,30 @@ private let domainDetector = try? NSRegularExpression(
   pattern: #"((?:[a-z]+://)?(?!-)[a-z0-9-]{1,63}(?<!-)\.)+[a-z]{2,6}"#,
   options: .caseInsensitive
 )
+
+// MARK: Email Validation
+public enum Email {
+  private static let emails = [
+    "ken@bell.labs",
+    "guido@python.nl",
+    "james@java-lang.ca",
+    "bjarne@cplusplus.com",
+    "ada@lovelace.co.uk",
+    "matz@ruby-lang.jp",
+    "brian@bell.labs",
+    "chris@swift-lang.com",
+    "grace@bugfree.com",
+  ]
+
+  private static let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+  public static var random: String {
+    return Self.emails.randomElement() ?? "john@appleseed.com"
+  }
+
+  public static func isValid(_ email: String) -> Bool {
+    guard !email.isEmpty else { return false }
+    let emailPred = NSPredicate(format: "SELF MATCHES %@", Self.regex)
+    return emailPred.evaluate(with: email)
+  }
+}
