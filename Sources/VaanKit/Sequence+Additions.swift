@@ -18,6 +18,14 @@ public extension Sequence {
   }
 }
 
+public extension Hashable {
+  @discardableResult
+  func stored(in set: inout Set<AnyHashable>) -> Self {
+    _ = set.insert(self)
+    return self
+  }
+}
+
 @resultBuilder public struct ListBuilder<I> {
   public typealias Aggregate = [I]
 
