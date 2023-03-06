@@ -29,10 +29,10 @@ public func log(_ message: String,
                 column: UInt = #column) {
   let emoji: String = {
     switch level {
-    case .info: return "ℹ️ℹ️ℹ️"
-    case .warning: return "⚠️⚠️⚠️"
+    case .info: return "ℹ️"
+    case .warning: return "⚠️⚠️"
     case .error: return "💥💥💥"
     }
   }()
-  print(emoji, file, function, line, column, message, emoji)
+  print(emoji, " ", file.description.dropLast(6), ".", function, "#", line, ":", column, " ", message, separator: "")
 }
